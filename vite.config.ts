@@ -4,9 +4,11 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 // jsx支持
 import vueJsx from "@vitejs/plugin-vue-jsx";
+// 原子样式 uno-css 支持
+import UnoCss from "./config/unocss";
 
 export default defineConfig({
-	plugins: [vue(), vueJsx({})],
+	plugins: [vue(), vueJsx({}), UnoCss()],
 
 	build: {
 		minify: false,
@@ -24,6 +26,13 @@ export default defineConfig({
 					vue: "Vue",
 				},
 			},
+		},
+		cssCodeSplit: true,
+	},
+	resolve: {
+		alias: {
+			// 更改运行时引入的vue（因为要使用template 选项）
+			vue: "vue/dist/vue.esm-bundler.js",
 		},
 	},
 });

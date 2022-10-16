@@ -5,14 +5,46 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Document</title>
+		<link rel="stylesheet" href="../../dist/assets/entry.8eaca2d5.css" />
 	</head>
 	<body>
+		123
 		<div id="app"></div>
 	</body>
+	<script src="../../node_modules/vue/dist/vue.global.js"></script>
+	<script src="../../dist/smarty-ui.iife.js"></script>
+	<!-- <script>
+		const { createApp } = Vue;
+		console.log("SmartyUI", SmartyUI);
+		createApp({
+			template: `
+                <SButton>测试</SButton>
+                <SFCButton/>
+                <JSXButton/>
+            `,
+		})
+			.use(SmartyUI)
+			.mount("#app");
+	</script> -->
 	<script type="module">
+		import { createApp } from "vue/dist/vue.esm-bundler.js";
+		import SmartyUI, { SFCButton, JSXButton, SButton } from "../../dist/smarty-ui.esm.js";
+
+		createApp({
+			template: `
+    <SButton/>
+    <JSXButton/>
+    <SFCButton/>
+        `,
+		})
+			.use(SmartyUI)
+			.mount("#app");
+	</script>
+	<!-- <script type="module">
 		import { createApp } from "vue/dist/vue.esm-bundler.js";
 
 		import SmartyUI, { SFCButton, JSXButton, SButton } from "../../dist/smarty-ui.mjs";
+		debugger;
 		createApp({
 			template: `
                 <SButton/>
@@ -22,5 +54,5 @@
 		})
 			.use(SmartyUI)
 			.mount("#app");
-	</script>
+	</script> -->
 </html>
