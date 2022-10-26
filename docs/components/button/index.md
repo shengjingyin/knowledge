@@ -11,7 +11,7 @@
 ```vue
 <template>
 	<div style="margin-bottom:20px;">
-		<SButton color="blue">主要按钮</SButton>
+		<SButton :color="blue" class="title">主要按钮</SButton>
 		<SButton color="green">绿色按钮</SButton>
 		<SButton color="gray">灰色按钮</SButton>
 		<SButton color="yellow">黄色按钮</SButton>
@@ -44,6 +44,15 @@
 		<SButton color="red" round plain icon="delete"></SButton>
 	</div>
 </template>
+<script lang="ts" setup>
+// import { ref } from "vue"; ? 如何导入vue
+const blue = "blue";
+</script>
+<style lang="less">
+.title {
+	font-size: 20px;
+}
+</style>
 ```
 
 :::
