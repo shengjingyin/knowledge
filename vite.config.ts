@@ -16,7 +16,7 @@ export default defineConfig({
 			entry: "./src/entry.ts",
 			name: "SmartyUI",
 			fileName: "smarty-ui",
-			// 导出的模块格式
+			// 导出的模块格式，供不同环境使用
 			formats: ["es", "umd", "iife"],
 		},
 		rollupOptions: {
@@ -27,7 +27,7 @@ export default defineConfig({
 				},
 			},
 		},
-		cssCodeSplit: true,
+		cssCodeSplit: true, // 独立输出 css
 	},
 	resolve: {
 		alias: {
