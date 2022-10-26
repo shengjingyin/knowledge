@@ -1,5 +1,4 @@
 #!/bin/sh
 . "$(dirname "$0")/_/husky.sh"
 
-echo ====代码静态检查====
-pnpm run test:run
+echo ====代码推送检查检查====
