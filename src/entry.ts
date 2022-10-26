@@ -10,9 +10,9 @@ export { SButton, SFCButton, JSXButton };
 // 编写一个插件，实现install方法
 
 export default {
-	install(app: App): void {
-		app.component(SButton.name, SButton);
-		app.component(SFCButton.name, SFCButton);
-		app.component(JSXButton.name, JSXButton);
-	},
+  install(app: App): void {
+    app.component(SButton.name, SButton);
+    app.component(SFCButton.name, SFCButton);
+    app.component(JSXButton.name, JSXButton);
+  },
 };
