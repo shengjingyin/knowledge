@@ -11,14 +11,6 @@ export default defineConfig({
 	plugins: [vue(), vueJsx({}), UnoCss()],
 
 	build: {
-		minify: false,
-		lib: {
-			entry: "./src/entry.ts",
-			name: "SmartyUI",
-			fileName: "smarty-ui",
-			// 导出的模块格式，供不同环境使用
-			formats: ["es", "umd", "iife"],
-		},
 		rollupOptions: {
 			external: ["vue"],
 			output: {
@@ -26,6 +18,16 @@ export default defineConfig({
 					vue: "Vue",
 				},
 			},
+		},
+		minify: "terser", // boolean | 'terser' | 'esbuild'
+		sourcemap: true, // 输出单独 source文件
+		// brotliSize: true, // 生成压缩大小报告
+		lib: {
+			entry: "./src/entry.ts",
+			name: "SmartyUI",
+			fileName: "smarty-ui",
+			// 导出的模块格式，供不同环境使用
+			formats: ["es", "umd", "iife"],
 		},
 		cssCodeSplit: true, // 独立输出 css
 	},

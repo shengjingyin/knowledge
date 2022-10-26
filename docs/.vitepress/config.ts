@@ -13,6 +13,7 @@ const sidebar = {
 		{ text: "布局" },
 	],
 };
+const a = 123;
 const config = {
 	themeConfig: {
 		sidebar,

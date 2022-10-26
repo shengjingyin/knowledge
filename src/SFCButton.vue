@@ -1,9 +1,9 @@
 <template>
-	<button>SFC - button</button>
+  <button>SFC - button</button>
 </template>
 
 <script lang="ts">
 export default {
-	name: "SFCButton",
+  name: "SFCButton",
 };
 </script>
