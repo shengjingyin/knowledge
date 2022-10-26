@@ -1,13 +1,10 @@
 <template>
-  <div
-    class="box-hover"
-    style="width: 200px; height: 100px; background: pink"
-  ></div>
+  <div class="box-hover" style="width: 200px; height: 100px; background: pink"></div>
 </template>
 <script lang="ts" name="Effect">
-import { ref, defineComponent } from "vue";
+import { defineComponent } from 'vue';
 export default defineComponent({
-  name: "Effect",
+  name: 'Effect',
 });
 </script>
 

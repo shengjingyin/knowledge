@@ -1,3 +1,3 @@
-import EffectVue from "./Effect.vue";
+import EffectVue from './Effect.vue';
 
 export default EffectVue;

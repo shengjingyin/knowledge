@@ -1,23 +1,23 @@
-import { defineComponent, PropType } from "vue";
-import "uno.css";
-export type IColor = "blue" | "green" | "gray" | "yellow" | "red";
+import { defineComponent, PropType } from 'vue';
+import 'uno.css';
+export type IColor = 'blue' | 'green' | 'gray' | 'yellow' | 'red';
 export const props = {
-	color: {
-		type: String as PropType<IColor>,
-		default: "blue",
-	},
-	icon: {
-		type: String,
-		default: "",
-	},
+  color: {
+    type: String as PropType<IColor>,
+    default: 'blue',
+  },
+  icon: {
+    type: String,
+    default: '',
+  },
 };
 export default defineComponent({
-	name: "SButton",
-	props,
-	setup(props, { slots }) {
-		return () => (
-			<button
-				class={`
+  name: 'SButton',
+  props,
+  setup(props, { slots }) {
+    return () => (
+      <button
+        class={`
                     py-2
                     px-4
                     font-semibold
@@ -30,12 +30,12 @@ export default defineComponent({
                     bg-${props.color}-500
                     hover:bg-${props.color}-700
                 `}
-			>
-				{/* jsx 版 v-if */}
-				{props.icon !== "" ? <i class={`i-ic-baseline-${props.icon} p-3`}></i> : ""}
-				{/* jsx 版 v-if */}
-				{slots.default ? slots.default() : ""}
-			</button>
-		);
-	},
+      >
+        {/* jsx 版 v-if */}
+        {props.icon !== '' ? <i class={`i-ic-baseline-${props.icon} p-3`}></i> : ''}
+        {/* jsx 版 v-if */}
+        {slots.default ? slots.default() : ''}
+      </button>
+    );
+  },
 });
