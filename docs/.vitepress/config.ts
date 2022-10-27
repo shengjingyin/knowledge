@@ -212,6 +212,11 @@ export default {
           ],
         },
         {
+          text: 'nginx',
+          collapsible: true,
+          children: [{ text: '常见问题', link: '/ecology/nginx/README' }],
+        },
+        {
           text: 'svn',
           collapsible: true,
           children: [{ text: '常见问题', link: '/ecology/svn/常见问题' }],
@@ -336,6 +341,81 @@ export default {
               ],
             },
           ],
+        },
+      ],
+      '/back/': [
+        {
+          text: 'node',
+          collapsible: true,
+          link: '/back/node/README',
+          children: [
+            {
+              text: '基础',
+              collapsible: true,
+              children: [
+                { text: 'RESETful API', link: '/back/node/RESETful API' },
+                { text: 'package', link: '/back/node/base/package' },
+                { text: '与浏览器的区别', link: '/back/node/base/diff-brow' },
+                { text: '事件循环', link: '/back/node/base/event-loop' },
+                { text: 'WebAssembly', link: '/back/node/base/WebAssembly' },
+              ],
+            },
+            {
+              text: '模块',
+              collapsible: true,
+              children: [
+                { text: '异步IO', link: '/back/node/module/异步IO' },
+                { text: 'buffer', link: '/back/node/module/buffer' },
+                { text: 'error', link: '/back/node/module/error' },
+                { text: 'events', link: '/back/node/module/events' },
+                { text: 'fs', link: '/back/node/module/fs' },
+                { text: 'http', link: '/back/node/module/http' },
+                { text: 'os', link: '/back/node/module/os' },
+                { text: 'path', link: '/back/node/module/path' },
+                { text: 'stream', link: '/back/node/module/stream' },
+              ],
+            },
+            {
+              text: 'orm',
+              collapsible: true,
+              children: [
+                {
+                  text: 'mongoose',
+                  link: '/back/node/orm/mongoose',
+                },
+                {
+                  text: 'sequelize',
+                  link: '/back/node/orm/sequelize',
+                },
+              ],
+            },
+            {
+              text: '解决方案',
+              collapsible: true,
+              children: [
+                {
+                  text: '权限模块',
+                  children: [
+                    { text: 'jsonwebtoken', link: '/back/node/解决方案/权限模块/jsonwebtoken' },
+                  ],
+                },
+                {
+                  text: '文件模块',
+                  children: [{ text: '读取行数', link: '/back/node/解决方案/文件模块/读取行数' }],
+                },
+              ],
+            },
+          ],
+        },
+        {
+          text: 'koa',
+          link: '/back/koa/README',
+          children: [],
+        },
+        {
+          text: 'mysql',
+          link: '/back/mysql/基础',
+          children: [],
         },
       ],
     },
