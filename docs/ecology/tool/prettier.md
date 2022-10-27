@@ -10,7 +10,7 @@
 
 这两个是必备的！
 
-![image-20220105225924854](D:\Project\image-host\img/image-20220105225924854.png)
+![image-20220105225924854](https://gitee.com/sjy666666/image-host/raw/master/img/image-20220105225924854.png)
 
 ## 项目内安装对应的`prettier`和`eslint`包
 
@@ -18,14 +18,14 @@
 
 ```json
 {
-    "devDependencies": {
-        "prettier": "^2.3.2",
-        "eslint": "^7.32.0",
-        "eslint-config-prettier": "^8.3.0",
-        "eslint-loader": "2.1.1",
-        "eslint-plugin-prettier": "^3.4.1",
-        "eslint-plugin-vue": "^7.17.0"
-    }
+  "devDependencies": {
+    "prettier": "^2.3.2",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-loader": "2.1.1",
+    "eslint-plugin-prettier": "^3.4.1",
+    "eslint-plugin-vue": "^7.17.0"
+  }
 }
 ```
 
@@ -41,9 +41,9 @@
 
 按照提示一步一步选择下去，我选的是 json 文件配置，完成选项后，会帮你生成一个文件`.eslintrc.json`，会按照你选的选项进行初始化配置。
 
-![image-20220105230638949](D:\Project\image-host\img/image-20220105230638949.png)
+![image-20220105230638949](https://gitee.com/sjy666666/image-host/raw/master/img/image-20220105230638949.png)
 
-![image-20220105230729564](D:\Project\image-host\img/image-20220105230729564.png)
+![image-20220105230729564](https://gitee.com/sjy666666/image-host/raw/master/img/image-20220105230729564.png)
 
 这是生成的初始配置文件
 
@@ -125,14 +125,14 @@
 ```json
 //.prettierrc.json
 {
-    "tabWidth": 4,
-    "printWidth": 160,
-    "useTabs": false,
-    "endOfLine": "auto",
-    "singleQuote": false,
-    "semi": true,
-    "trailingComma": "none",
-    "bracketSpacing": true
+  "tabWidth": 4,
+  "printWidth": 160,
+  "useTabs": false,
+  "endOfLine": "auto",
+  "singleQuote": false,
+  "semi": true,
+  "trailingComma": "none",
+  "bracketSpacing": true
 }
 ```
 
@@ -140,16 +140,16 @@
 
 ```json
 {
-    // eslint配置项，保存时自动修复
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true
-    },
-    // 默认使用prettier格式化支持的文件
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    // 自动设定eslint工作区
-    "eslint.workingDirectories": [{ "mode": "auto" }],
-    // 保存格式化
-    "editor.formatOnSave": true
+  // eslint配置项，保存时自动修复
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  // 默认使用prettier格式化支持的文件
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // 自动设定eslint工作区
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+  // 保存格式化
+  "editor.formatOnSave": true
 }
 ```
 
@@ -159,9 +159,9 @@
 
 下面是我的一个使用效果，使用`ctrl + s`保存即可修复`eslint`报错。
 
-![](D:\Project\image-host\img/eslint效果.gif)
+![](https://gitee.com/sjy666666/image-host/raw/master/img/eslint效果.gif)
 
-![](D:\Project\image-host\img/image-20210830202832738.png)
+![](https://gitee.com/sjy666666/image-host/raw/master/img/image-20210830202832738.png)
 
 哇咔咔，舒服的雅痞，再也不用担心代码风格不统一了
 

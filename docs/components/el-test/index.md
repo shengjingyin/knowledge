@@ -9,9 +9,7 @@
 :::demo 使用`size`、`color`、`pain`、`round`属性来定义 Button 的样式。
 
 ```vue
-<template>
-  <el-test></el-test>
-</template>
+<el-test></el-test>
 ```
 
 :::

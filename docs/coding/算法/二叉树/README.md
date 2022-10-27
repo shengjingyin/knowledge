@@ -6,7 +6,7 @@
 
 检查它是否轴对称。
 
-![image-20220511140447316](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220511140447316.png) 
+<!-- ![image-20220511140447316](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20220511140447316.png)  -->
 
 ## 练习题
 
@@ -28,17 +28,17 @@
 
 ```tsx
 function preorderTraversal(root: TreeNode | null): number[] {
-    const res: number[] = []
-    preTraverse(root, res)
-    return res
-};
+  const res: number[] = [];
+  preTraverse(root, res);
+  return res;
+}
 
-function preTraverse (root: TreeNode, res: number[]) {
-    if (root) {
-        res.push(root.val)
-        preTraverse(root.left, res)
-        preTraverse(root.right, res)
-    }
+function preTraverse(root: TreeNode, res: number[]) {
+  if (root) {
+    res.push(root.val);
+    preTraverse(root.left, res);
+    preTraverse(root.right, res);
+  }
 }
 ```
 
@@ -48,47 +48,52 @@ function preTraverse (root: TreeNode, res: number[]) {
 
 ```tsx
 function postorderTraversal(root: TreeNode | null): number[] {
-    const res: number[] = []
-    postTraverse(root, res)
-    return res
-};
+  const res: number[] = [];
+  postTraverse(root, res);
+  return res;
+}
 
-function postTraverse (root: TreeNode, res: number[]) {
-    if (root) {
-        postTraverse(root.left, res)
-        postTraverse(root.right, res)
-        res.push(root.val)
-    }
+function postTraverse(root: TreeNode, res: number[]) {
+  if (root) {
+    postTraverse(root.left, res);
+    postTraverse(root.right, res);
+    res.push(root.val);
+  }
 }
 ```
 
 #### [110. 平衡二叉树](https://leetcode.cn/problems/balanced-binary-tree/)
 
-+ 自上而下查询高度
+- 自上而下查询高度
 
   ```tsx
   function isBalanced(root: TreeNode | null): boolean {
-      if (!root) {
-          return true
-      } else {
-          return Math.abs(height(root.left) - height(root.right)) <= 1 && isBalanced(root.left) && isBalanced(root.right)
-      }
-  };
+    if (!root) {
+      return true;
+    } else {
+      return (
+        Math.abs(height(root.left) - height(root.right)) <= 1 &&
+        isBalanced(root.left) &&
+        isBalanced(root.right)
+      );
+    }
+  }
   // 计算树的高度
   function height(root: TreeNode | null): number {
-      if (!root) {
-          return 0
-      } else {
-          const hl = height(root.left), hr = height(root.right);
-          return Math.max(hl, hr) + 1
-      }
+    if (!root) {
+      return 0;
+    } else {
+      const hl = height(root.left),
+        hr = height(root.right);
+      return Math.max(hl, hr) + 1;
+    }
   }
   ```
 
-+ 自下而上查询高度
+- 自下而上查询高度
 
   ```
-  
+
   ```
 
 #### [101. 对称二叉树](https://leetcode.cn/problems/symmetric-tree/)
@@ -97,20 +102,19 @@ function postTraverse (root: TreeNode, res: number[]) {
 
 ```tsx
 function minDepth(root: TreeNode | null): number {
-    if (!root) return 0
-    if (!root.left && !root.right) return 1
-    
-    let min_depth = Infinity
+  if (!root) return 0;
+  if (!root.left && !root.right) return 1;
 
-    if (root.left) {
-        min_depth = Math.min(minDepth(root.left), min_depth)
-    }
+  let min_depth = Infinity;
 
-    if (root.right) {
-        min_depth = Math.min(minDepth(root.right), min_depth)
-    }
+  if (root.left) {
+    min_depth = Math.min(minDepth(root.left), min_depth);
+  }
 
-    return min_depth + 1
-};
+  if (root.right) {
+    min_depth = Math.min(minDepth(root.right), min_depth);
+  }
+
+  return min_depth + 1;
+}
 ```
-

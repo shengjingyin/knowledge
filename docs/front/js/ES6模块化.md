@@ -2,27 +2,27 @@
 
 ```js
 // A文件
-console.log("引入方", 1);
-import B from "./B";
+console.log('引入方', 1);
+import B from './B';
 ```
 
 ```js
 // B文件
 export const a = 1;
 
-console.log("被引入方", 2);
+console.log('被引入方', 2);
 
-console.time("循环");
+console.time('循环');
 let r = 0;
 for (let i = 0; i < 1000000000; i++) {
-    r += 1;
+  r += 1;
 }
-console.timeEnd("循环");
+console.timeEnd('循环');
 ```
 
 执行结果：
 
-![image-20220115111926950](D:\Project\image-host\img/image-20220115111926950.png)
+![image-20220115111926950](https://gitee.com/sjy666666/image-host/raw/master/img/image-20220115111926950.png)
 
 由此可以得出以下两个结论：
 

@@ -4,4 +4,4 @@
 
 按 F1 输入 join lines 即可
 
-![image-20220324120319287](D:\Project\image-host\img/image-20220324120319287.png)
+![image-20220324120319287](https://gitee.com/sjy666666/image-host/raw/master/img/image-20220324120319287.png)

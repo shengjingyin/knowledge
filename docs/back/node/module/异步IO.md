@@ -2,9 +2,9 @@
 
 通过回调的形式执行任务
 
-![image-20220223165117936](D:\Project\image-host\img/image-20220223165117936.png)
+![image-20220223165117936](https://gitee.com/sjy666666/image-host/raw/master/img/image-20220223165117936.png)
 
-![image-20220223165315376](D:\Project\image-host\img/image-20220223165315376.png)
+![image-20220223165315376](https://gitee.com/sjy666666/image-host/raw/master/img/image-20220223165315376.png)
 
 前后端都是基于事件机制，事件的编程方式具有轻量级、松耦合、只关注事务点等优势，但是在多个异步任务的场景下，事件与事件之间各自独立，如何协作却又是一个问题
 
@@ -12,9 +12,9 @@
 
 单线程的弱点：
 
--   无法利用多核 CPU（是否可以使用多进程利用多核 CPU）
--   错误会导致整个应用退出，应用的健壮性值得考验
--   大量计算占用 CPU 导致无法继续调用异步 I/O
+- 无法利用多核 CPU（是否可以使用多进程利用多核 CPU）
+- 错误会导致整个应用退出，应用的健壮性值得考验
+- 大量计算占用 CPU 导致无法继续调用异步 I/O
 
 针对 Node 弱点的解决方案：
 
@@ -32,6 +32,6 @@ I/O 密集的优势主要利用**事件循环**的处理能力，而不是启动
 
 v8 的执行效率是十分高的
 
-![image-20220223172909452](D:\Project\image-host\img/image-20220223172909452.png)
+![image-20220223172909452](https://gitee.com/sjy666666/image-host/raw/master/img/image-20220223172909452.png)
 
-<img src="D:\Project\image-host\img/image-20220223173918908.png" alt="image-20220223173918908" style="zoom:150%;" />
+<img src="https://gitee.com/sjy666666/image-host/raw/master/img/image-20220223173918908.png" alt="image-20220223173918908" style="zoom:150%;" />

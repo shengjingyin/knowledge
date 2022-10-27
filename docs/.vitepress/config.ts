@@ -142,7 +142,7 @@ export default {
           text: 'webpack',
           collapsible: true,
           children: [
-            { text: '入门', link: '/front/webpack/README' },
+            { text: '入门', link: '/front/webpack/' },
             { text: 'loader', link: '/front/webpack/loader' },
             { text: 'plugin', link: '/front/webpack/plugin' },
             { text: '高级配置', link: '/front/webpack/高级配置' },
@@ -345,7 +345,7 @@ export default {
       { text: '前端', link: '/front/js/README' },
       { text: '生态', link: '/ecology/git/基操' },
       { text: '算法', link: '/coding/数据结构/链表' },
-      { text: '后端', link: '/coding/数据结构/链表' },
+      { text: '后端', link: '/back/README' },
       { text: 'help', link: 'https://vuepress-theme-hope.github.io/v2/zh/' },
     ],
   },

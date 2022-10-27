@@ -2,28 +2,28 @@
 
 ## 数据结构
 
-### [一、树](structures/tree)
+### [一、树]
 
-### [二、栈](structures/stack)
+### [二、栈]
 
-### [三、堆](structures/stack)
+### [三、堆]
 
-### [四、链表](structures/linkList)
+### [四、链表]
 
-### [五、队列](structures/queue)
+### [五、队列]
 
 ## 算法
 
-### [一、排序](algorithm/sort)
+### [一、排序]
 
-#### [1.1 冒泡排序](algorithm/sort)
+#### [1.1 冒泡排序]
 
-#### [1.2 选择排序](structures/queue)
+#### [1.2 选择排序]
 
-#### [1.3 插入排序](structures/queue)
+#### [1.3 插入排序]
 
-#### [1.4 归并排序](structures/queue)
+#### [1.4 归并排序]
 
-#### [1.5 快排序](structures/queue)
+#### [1.5 快排序]
 
-#### [1.6 堆排序](structures/queue)
+#### [1.6 堆排序]

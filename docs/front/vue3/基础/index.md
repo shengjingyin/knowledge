@@ -13,7 +13,7 @@
 
 [解决 vscode 红色波浪线的 ts 报错:找不到模块“store” ts(2307)，不识别@别名路径](https://blog.csdn.net/xjtarzan/article/details/123660435)
 
-![image-20220416154915568](D:\Project\image-host\img/image-20220416154915568.png)
+![image-20220416154915568](https://gitee.com/sjy666666/image-host/raw/master/img/image-20220416154915568.png)
 
 ```tsx
 // ts.config.ts 配置
@@ -29,10 +29,10 @@
 [Vue3 中 element-plus 全局使用 Icon 图标的过程详解](https://www.jb51.net/article/235348.htm)
 
 ```tsx
-import * as ElIcons from "@element-plus/icons";
+import * as ElIcons from '@element-plus/icons';
 
 for (const name in ElIcons) {
-	app.component(name, (ElIcons as any)[name]);
+  app.component(name, (ElIcons as any)[name]);
 }
 ```
 
