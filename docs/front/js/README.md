@@ -19,3 +19,10 @@ JS 特点：
 -   所有路由：**小写+中横线**, 比如/to-client, /data-list
 
 -   其他的都是**小驼峰**.
+
+
+
+## 资源
+
+【谈谈JS二进制：File、Blob、FileReader、ArrayBuffer、Base64】https://blog.csdn.net/qiwoo_weekly/article/details/127255281
+

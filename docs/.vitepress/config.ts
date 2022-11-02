@@ -1,7 +1,16 @@
 import { demoBlockPlugin } from 'vitepress-theme-demoblock';
 export default {
   themeConfig: {
-    siteTitle: 'My Custom Title',
+    title: 'My Custom Title',
+    description: 'Just playing around.',
+    // 展示搜索框
+    algolia: {
+      appKey: '',
+      indexName: '',
+      searchParameters: {
+        faeFilters: ['tags:guide,api'],
+      },
+    },
     sidebar: {
       '/components/': [
         { text: '起步', link: '/components/' },
@@ -58,6 +67,13 @@ export default {
               children: [
                 { text: '插件', link: '/front/vue/进阶/使用插件' },
                 { text: '自定义指令', link: '/front/vue/进阶/使用自定义指令' },
+              ],
+            },
+            {
+              text: '工程应用',
+              children: [
+                { text: '全局loading', link: '/front/vue/工程解决方案/全局loading' },
+                { text: '使用css变量', link: '/front/vue/工程解决方案/使用css变量' },
               ],
             },
             {
@@ -195,6 +211,7 @@ export default {
         {
           text: 'git',
           collapsible: true,
+          link: '/ecology/git/README',
           children: [
             { text: '基操', link: '/ecology/git/基操' },
             { text: '代码冲突', link: '/ecology/git/代码冲突' },
