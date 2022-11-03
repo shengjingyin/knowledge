@@ -30,21 +30,20 @@ export default {
           collapsible: true,
           link: '/front/js/README',
           children: [
+            { text: 'var、let、const区别', link: '/front/js/var、let、const' },
+            { text: 'new', link: '/front/js/new' },
+            { text: 'this', link: '/front/js/this以及改变this指向的方法' },
             { text: '闭包', link: '/front/js/闭包' },
             { text: '防抖、节流', link: '/front/js/防抖、节流' },
-            { text: '获取元素尺寸', link: '/front/js/获取元素尺寸' },
             { text: '深浅拷贝', link: '/front/js/深浅拷贝' },
-            { text: '数组', link: '/front/js/数组' },
             { text: '异步解决方案', link: '/front/js/异步解决方案' },
             { text: '原型链', link: '/front/js/原型链' },
-            { text: '作用域', link: '/front/js/作用域' },
-            { text: 'asyncawait原理', link: '/front/js/asyncawait原理' },
+            { text: 'async、await原理', link: '/front/js/asyncawait原理' },
+            { text: '获取元素尺寸', link: '/front/js/获取元素尺寸' },
+            { text: '数组', link: '/front/js/数组' },
             { text: 'console', link: '/front/js/console' },
             { text: 'js工具函数', link: '/front/js/js工具函数' },
             { text: 'JS工具库', link: '/front/js/JS工具库' },
-            { text: 'new是什么', link: '/front/js/new' },
-            { text: 'this以及改变this指向的方法', link: '/front/js/this以及改变this指向的方法' },
-            { text: 'var、let、const区别', link: '/front/js/var、let、const' },
             { text: 'ES6模块化', link: '/front/js/ES6模块化' },
           ],
         },
@@ -460,6 +459,7 @@ export default {
   },
   markdown: {
     config: md => {
+      console.log('🚀 ~ file: config.ts ~ line 463 ~ md', md);
       // 添加DemoBlock插槽
       // const { demoBlockPlugin } = require("vitepress-theme-demoblock");
       md.use(demoBlockPlugin);

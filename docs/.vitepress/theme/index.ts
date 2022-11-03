@@ -1,6 +1,6 @@
 import Theme from 'vitepress/dist/client/theme-default';
 import SmartyUI from '../../../src/entry';
-
+import './custom.css';
 // element
 import 'element-plus/dist/index.css';
 import ElementPlus from 'element-plus';

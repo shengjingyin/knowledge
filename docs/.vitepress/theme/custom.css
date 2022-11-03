@@ -1,0 +1,4 @@
+/* 修改主题 */
+.highlight-lines .highlighted {
+  background-color: rgb(188 245 255 / 66%) !important;
+}
