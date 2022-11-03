@@ -24,8 +24,9 @@ export default {
         },
       ],
       '/front/': [
+        { text: '导航', link: '/front/README' },
         {
-          text: 'js',
+          text: 'JS',
           collapsible: true,
           link: '/front/js/README',
           children: [
@@ -435,14 +436,25 @@ export default {
           children: [],
         },
       ],
+      '/shengjingyin/': [
+        {
+          text: '关于',
+          link: '/shengjingyin/README',
+        },
+        {
+          text: '收藏',
+          children: [{ text: '如何写好一篇文章', link: '/shengjingyin/收藏/如何写好一篇文章' }],
+        },
+      ],
     },
     nav: [
       { text: '首页', link: '/' },
       { text: '组件', link: '/components/' },
-      { text: '前端', link: '/front/js/README' },
+      { text: '前端', link: '/front/README' },
       { text: '生态', link: '/ecology/git/基操' },
       { text: '算法', link: '/coding/数据结构/链表' },
       { text: '后端', link: '/back/README' },
+      { text: 'about', link: '/shengjingyin/README' },
       { text: 'help', link: 'https://vuepress-theme-hope.github.io/v2/zh/' },
     ],
   },

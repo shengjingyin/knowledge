@@ -1,10 +1,11 @@
 ---
 home: true
 heroImage: /img/git.png
+heroAlt: Logo image
 heroText: 积硅步，至千里
 tagline: 致力于做一款属于自己的低代码平台
 actionText: Free(低代码平台) →
-actionLink: https://juejin.cn/
+actionLink: https://pgo8ie4oqj.feishu.cn/docx/WuqJd3qaDoOcunx0wi0cwmZ8nTb
 features:
   - icon: ⚡️
     title: 简单
