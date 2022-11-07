@@ -1,25 +1,167 @@
-# asyncawait 原理
+ES2017 引入 async，本质是 Generator 函数的语法糖。 async 函数对 Generator 函数的改进，体现在以下四点。
 
-1、初始化：pending
+- **内置执行器**
 
-promise 的状态转换
+Generator 函数的执行必须靠执行器，而 async 函数自带执行器。也就是说，async 函数的执行，与普通函数一模一样，只要一行。这完全不像 Generator 函数，需要调用 next 方法，才能真正执行，得到最后结果。
 
-- 成功：pending -> fulfilled
-- 失败：pending -> rejected
+- **更好的语义**
 
-## 总结
+async 和 await，比起星号和 yield，语义更清楚了。async 表示函数里有异步操作，await 表示紧跟在后面的表达式需要等待结果。
 
-- await 只能在 async 函数中使用，否则报错
+- **更广的适用性**
 
-  ```js
-  Uncaught SyntaxError: await is only valid in async functions and the top level bodies of modules
-  ```
+co 模块约定，yield 命令后面只能是 Thunk 函数或 Promise 对象，而 async 函数的 await 命令后面，可以是 Promise 对象和原始类型的值（数值、字符串和布尔值，但这时会自动转成立即 resolved 的 Promise 对象）。
 
-- async 函数返回的是一个状态为 fulfilled promise，return 值就是 promise 结果
+- **返回值是 Promise**
 
-- await 一个非 promise 值时，可以添加一个微任务进入任务队列
+async 函数的返回值是 Promise 对象，这比 Generator 函数的返回值是 Iterator 对象方便多了。你可以用 then 方法指定下一步的操作。进一步说，async 函数完全可以看作多个异步操作，包装成的一个 Promise 对象，而 await 命令就是内部 then 命令的语法糖。 1、初始化：pending
 
-- async/await 作用是**用同步的方式，执行异步操作**
+## generator 函数
+
+`generator函数`与普通函数的区别是，多了一个星号 **\*** ，并且只有在`generator函数`中才能使用`yield`，`yield` 相当于是执行`generator函数`的中间暂停点，要想使函数继续向后执行，需要调用`next方法`，执行`next方法`后会返回一个对象，包含`value`和`done`两个属性
+
+- value：暂停点后面接的值，也就是 yield 后面接的值
+- done：标记 generate 函数是否走完，走完为 true，没走完为 false
+
+```js
+function* fn1() {
+  yield 1;
+
+  yield 2;
+
+  yield 3;
+}
+
+const g = fn1(); // fn1 {<suspended>}，初始化，
+const r1 = g.next(); // {value: 1, done: false}
+const r2 = g.next(); // {value: 2, done: false}
+const r3 = g.next(); // {value: 3, done: false}
+const r4 = g.next(); // {value: undefined, done: true}
+```
+
+### yield 后面接 promise
+
+yield 后面接 promise 会 **立即执行** 函数，返回一个状态为`pending`的 promise 对象
+
+```js{14,15}
+function promise(num) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(num / 3);
+    }, 3000);
+  });
+}
+function* fn1() {
+  yield promise(2);
+  return 2;
+}
+
+const g = fn1(); // {<suspended>}
+const r2 = g.next(); //? {value: Promise {<pending>} , done: false} ?
+r2.value.then(res => {
+  console.log('🚀 2', res); // 0.6666666666666666
+});
+const r3 = g.next();
+console.log('🚀 ~ 1', r3); // {value: 2, done: true}
+```
+
+### next 传参
+
+generator 函数可以用`next方法`传参，并且可以用 yield 来接收这个参数，需要注意两点
+
+- 第一次传参没有用，第二次才开始有用
+- next 传值时，顺序是：先右边 yield，后左边接收参数
+
+```js
+function* gen() {
+  const num1 = yield 1;
+  console.log('num1', num1); // 11111
+  const num2 = yield 2;
+  console.log('num2', num2); // 22222
+  return 3;
+}
+const g = gen();
+g.next(); // { value: 1, done: false }
+g.next(11111); // { value: 2, done: false }
+g.next(22222); // { value: 3, done: true }
+```
+
+自己画一个
+
+![image-20220302215406196](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/850681c60b494d2f9ecbe9d820be2e0d~tplv-k3u1fbpfcp-zoom-1.image)
+
+### promise + next 传参
+
+```js
+function fn(num) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(num * 3);
+    }, 1000);
+  });
+}
+
+function* gen() {
+  const num1 = yield fn(1);
+  const num2 = yield fn(num1);
+  const num3 = yield fn(num2);
+  return num3;
+}
+```
+
+执行 gen ，因为返回的都是 promise，所以需要.then 处理
+
+```js
+const g = gen();
+
+const next1 = g.next(); // yield fn(1);
+next1.value.then(res1 => {
+  console.log('res1', res1);
+
+  const next2 = g.next(res1); // yield fn(num1); res1 赋值给 num1
+  next2.value.then(res2 => {
+    console.log('res2', res2);
+
+    const next3 = g.next(res2); // yield fn(num2);  res2 赋值给 num2
+    next3.value.then(res3 => {
+      console.log('res3', res3);
+
+      const next4 = g.next(res3); // 最后一次，res3 赋值给 num3
+      console.log('next4', next4);
+    });
+  });
+});
+```
+
+结果
+
+```
+res1 3
+res2 9
+res3 27
+next4 {value: 27, done: true}
+```
+
+上面使用 promise 的方式手动执行.next 在步骤少时还能使用，但是如果步骤很多时，那就会出现很多重复的步骤；所以可以将 generator 调用方式进行封装，如下：
+
+```js{7}
+function run(generator) {
+  const it = generator();
+  function go(result) {
+    if (result.done) return result.value;
+
+    return result.value.then(
+      res => go(it.next(res)), // 执行next
+      error => go(it.throw(error))
+    );
+  }
+  go(it.next());
+}
+
+run(gen);
+```
+
+那换成这种之后，其实只要执行 `run(gen)` ，gen 中的函数体就有着和 await 一样的等待功能，run 函数也是 async、await 的核心原理
 
 ## 练习
 
@@ -69,206 +211,4 @@ deal3().then((...args) => {
 🚀 7 4
 ```
 
-## 原理（generator 函数）
-
-`generator函数`与普通函数的区别是，多了一个星号 **\*** ，并且只有在`generator函数`中才能使用`yield`，`yield` 相当于是执行`generator函数`的中间暂停点，要想使函数继续向后执行，需要调用`next方法`，执行`next方法`后会返回一个对象，包含`value`和`done`两个属性
-
-- value：暂停点后面接的值，也就是 yield 后面接的值
-- done：标记 generate 函数是否走完，走完为 true，没走完为 false
-
-```js
-function* fn1() {
-  yield 1;
-
-  yield 2;
-
-  yield 3;
-}
-
-const g = fn1();
-console.log('🚀 ~ file: index2.html ~ line 20 ~ g', g); // fn1 {<suspended>}
-const r1 = g.next();
-console.log('🚀 ~ file: index2.html ~ line 22 ~ r1', r1); // {value: 1, done: false}
-const r2 = g.next();
-console.log('🚀 ~ file: index2.html ~ line 22 ~ r2', r2); // {value: 2, done: false}
-const r3 = g.next();
-console.log('🚀 ~ file: index2.html ~ line 22 ~ r3', r3); // {value: 3, done: false}
-const r4 = g.next();
-console.log('🚀 ~ file: index2.html ~ line 22 ~ r4', r4); // {value: undefined, done: true}
-```
-
-可以看到最后一个 value 是 undefined，这个取决与`generator函数`是否 return 值，当流程走完之后再去调用`next方法`，返回的结果始终是`{value: undefined, done: true}`
-
-```js
-function* fn1() {
-  yield 1;
-
-  yield 2;
-
-  yield 3;
-
-  return 4;
-}
-
-const g = fn1();
-g.next();
-g.next();
-g.next();
-
-const r4 = g.next();
-console.log('🚀 ~ file: index2.html ~ line 22 ~ r4', r4); // {value: 4, done: true}
-const r5 = g.next();
-console.log('🚀 ~ file: index2.html ~ line 22 ~ r5', r5); // {value: undefined, done: true}
-const r6 = g.next();
-console.log('🚀 ~ file: index2.html ~ line 22 ~ r6', r6); // {value: undefined, done: true}
-```
-
-### yield 后面接函数
-
-yield 后面接函数会 **立即执行** 函数，并且以函数的返回值，会作为本次暂停点对象的`value值`
-
-```js
-function fn(num) {
-  console.log('num', num);
-  return num / 3;
-}
-function* fn1() {
-  yield fn(1);
-
-  return 2;
-}
-
-const g = fn1();
-console.log('🚀 ~ file: index2.html ~ line 20 ~ g', g); // fn1 {<suspended>}
-
-// 1
-const r1 = g.next();
-console.log('🚀 ~ file: index2.html ~ line 22 ~ r1', r1); // {value: 0.3333333333333333, done: false}
-const r2 = g.next();
-console.log('🚀 ~ file: index2.html ~ line 22 ~ r2', r2); // {value: 2, done: true}
-```
-
-### yield 后面接 promise
-
-yield 后面接 promise 会 **立即执行** 函数，返回一个状态为`pending`的 promise 对象
-
-```js
-function fn(num) {
-  console.log('num', num);
-  return num / 3;
-}
-function promise(num) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(num / 3);
-    }, 3000);
-  });
-}
-function* fn1() {
-  yield fn(1);
-
-  yield promise(2);
-
-  return 2;
-}
-
-const g = fn1();
-console.log('🚀 ~ file: index2.html ~ line 20 ~ g', g);
-const r1 = g.next();
-console.log('🚀 ~ file: index2.html ~ line 22 ~ r1', r1);
-const r2 = g.next();
-console.log('🚀 ~ file: index2.html ~ line 22 ~ r2', r2); // {value: Promise {<pending>} , done: false}
-r2.value.then(res => {
-  console.log('🚀 ~ file: index2.html ~ line 37 ~ res', res);
-});
-const r3 = g.next();
-console.log('🚀 ~ file: index2.html ~ line 22 ~ r3', r3);
-```
-
-```bash
-index2.html:68 🚀 ~ file: index2.html ~ line 20 ~ g fn1 {<suspended>}
-index2.html:49 num 1
-index2.html:70 🚀 ~ file: index2.html ~ line 22 ~ r1 {value: 0.3333333333333333, done: false}
-index2.html:72 🚀 ~ file: index2.html ~ line 22 ~ r2 {value: Promise {<pending>} , done: false}
-index2.html:77 🚀 ~ file: index2.html ~ line 22 ~ r3 {value: 2, done: true}
-index2.html:74 🚀 ~ file: index2.html ~ line 37 ~ res 0.6666666666666666
-```
-
-如果想要 promise 调用的结果，那么接上`.then`即可
-
-### next 传参
-
-generator 函数可以用`next方法`传参，并且可以用 yield 来接收这个参数，需要注意两点
-
-- 第一次传参没有用，第二次才开始有用
-- next 传值时，顺序是：先右边 yield，后左边接收参数
-
-```js
-function* gen() {
-  const num1 = yield 1;
-  console.log(num1);
-  const num2 = yield 2;
-  console.log(num2);
-  return 3;
-}
-const g2 = gen();
-console.log(g2.next()); // { value: 1, done: false }
-console.log(g2.next(11111));
-// 11111
-//  { value: 2, done: false }
-console.log(g2.next(22222));
-// 22222
-// { value: 3, done: true }
-```
-
-![image-20220302215406196](https://gitee.com/sjy666666/image-host/raw/master/img/image-20220302215406196.png)
-
-### promise + next 传参
-
-```js
-function fn(num) {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(num * 3);
-    }, 1000);
-  });
-}
-
-function* gen() {
-  const num1 = yield fn(1);
-  const num2 = yield fn(num1);
-  const num3 = yield fn(num2);
-  return num3;
-}
-
-const g = gen();
-
-const next1 = g.next(); // yield fn(1);
-next1.value.then(res1 => {
-  console.log('res1', res1);
-
-  const next2 = g.next(res1); // yield fn(num1); res1 赋值给 num1
-  next2.value.then(res2 => {
-    console.log('res2', res2);
-
-    const next3 = g.next(res2); // yield fn(num2);  res2 赋值给 num2
-    next3.value.then(res3 => {
-      console.log('res3', res3);
-
-      const next4 = g.next(res3); // 最后一次，res3 赋值给 num3
-      console.log('next4', next4);
-    });
-  });
-});
-```
-
-```
-res1 3
-res2 9
-res3 27
-next4 {value: 27, done: true}
-```
-
-![image-20220302225605325](https://gitee.com/sjy666666/image-host/raw/master/img/image-20220302225605325.png)
-
-## 实现 async
+解析：

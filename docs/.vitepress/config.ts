@@ -38,8 +38,10 @@ export default {
             { text: 'this', link: '/front/js/this以及改变this指向的方法' },
             { text: '闭包', link: '/front/js/闭包' },
             { text: '防抖、节流', link: '/front/js/防抖、节流' },
+            { text: 'promise', link: '/front/js/promise' },
             { text: '异步解决方案', link: '/front/js/异步解决方案' },
-            { text: 'async、await原理', link: '/front/js/asyncawait原理' },
+            { text: 'async原理', link: '/front/js/asyncawait原理' },
+            { text: 'ES5继承', link: '/front/js/ES5继承' },
             { text: '获取元素尺寸', link: '/front/js/获取元素尺寸' },
             { text: '数组', link: '/front/js/数组' },
             { text: 'console', link: '/front/js/console' },
@@ -52,35 +54,21 @@ export default {
           text: 'vue',
           collapsible: true,
           children: [
-            {
-              text: '基础',
-              children: [
-                { text: '传参', link: '/front/vue/基础/传参' },
-                { text: '插槽', link: '/front/vue/基础/插槽' },
-                { text: 'for循环中key的作用', link: '/front/vue/基础/for循环中key的作用' },
-                { text: 'hook使用', link: '/front/vue/基础/hook使用' },
-                { text: 'watch、computed区别', link: '/front/vue/基础/watch、computed区别' },
-                { text: 'watch', link: '/front/vue/基础/watch' },
-              ],
-            },
-            {
-              text: '进阶',
-              children: [
-                { text: '插件', link: '/front/vue/进阶/使用插件' },
-                { text: '自定义指令', link: '/front/vue/进阶/使用自定义指令' },
-              ],
-            },
-            {
-              text: '工程应用',
-              children: [
-                { text: '全局loading', link: '/front/vue/工程解决方案/全局loading' },
-                { text: '使用css变量', link: '/front/vue/工程解决方案/使用css变量' },
-              ],
-            },
+            { text: '传参', link: '/front/vue/基础/传参' },
+            { text: '插槽', link: '/front/vue/基础/插槽' },
+            { text: 'for循环中key的作用', link: '/front/vue/基础/for循环中key的作用' },
+            { text: 'hook使用', link: '/front/vue/基础/hook使用' },
+            { text: 'watch', link: '/front/vue/基础/watch' },
+
+            { text: '插件', link: '/front/vue/进阶/使用插件' },
+            { text: '自定义指令', link: '/front/vue/进阶/使用自定义指令' },
+
+            { text: '全局loading', link: '/front/vue/工程解决方案/全局loading' },
+            { text: '使用css变量', link: '/front/vue/工程解决方案/使用css变量' },
             {
               text: '源码',
               children: [
-                { text: '初始化Vue', link: '/front/vue/源码/1、初始化Vue' },
+                { text: 'new Vue', link: '/front/vue/源码/1、初始化Vue' },
                 { text: '响应式原理', link: '/front/vue/源码/2、响应式原理' },
                 { text: '异步更新原理', link: '/front/vue/源码/3、异步更新原理' },
                 {
@@ -199,6 +187,7 @@ export default {
           children: [
             { text: '基础', link: '/ecology/linux/基础' },
             { text: 'nohup', link: '/ecology/linux/nohup' },
+            { text: 'shell', link: '/ecology/linux/shell' },
           ],
         },
         {
@@ -260,6 +249,15 @@ export default {
         },
       ],
       '/coding/': [
+        {
+          text: '浏览器',
+          collapsible: true,
+          children: [
+            { text: 'xss', link: '/coding/浏览器/xss' },
+            { text: '渲染过程', link: '/coding/浏览器/render' },
+            { text: '堆栈', link: '/coding/浏览器/堆栈' },
+          ],
+        },
         {
           text: '数据结构',
           collapsible: true,
@@ -460,7 +458,6 @@ export default {
   },
   markdown: {
     config: md => {
-      console.log('🚀 ~ file: config.ts ~ line 463 ~ md', md);
       // 添加DemoBlock插槽
       // const { demoBlockPlugin } = require("vitepress-theme-demoblock");
       md.use(demoBlockPlugin);

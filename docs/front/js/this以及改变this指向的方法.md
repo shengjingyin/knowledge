@@ -37,37 +37,60 @@ obj.foo(); // this -> obj
 
 ### 显示绑定
 
-```js {7}
-function foo() {
-  log(this.a);
+使用 call、apply、bind，都可以改变函数运行时的 this 指向
+
+#### apply
+
+默认展开数组分配到指定函数的参数列表中
+
+```js{5}
+function foo(a, b) {
+  return a + b; // 1 + 2
 }
-var obj = {
-  a: 2,
-};
-foo.call(obj); // this -> obj
+
+foo.apply(null, [1, 2]);
 ```
+
+#### bind
+
+在 new 中使用 bind 绑定的函数，主要目的是可以预先设置函数的一些参数，在 new 进行初始化的时候可以只传入其余的参数。这种分开传参的技术称为：“部分应用”，是“柯里化”的一种
 
 ### new 绑定
 
-使用 new 来构造 foo(...)时，会构造一个新对象并把它绑定到 foo(...)调用中的 this
+使用 new 操作符会有以下 4 个步骤
+
+- 创建一个全新的对象
+- 这个新对象和函数之间会进行[[Prototype]]连接
+- 函数调用时的 this 会绑定到这个新对象
+- 如果函数没有返回其它对象，那么 new 表达式中的函数调用会自动返回这个新对象
 
 ```js
-function foo(a) {
-  this.a = a;
+function myNew(Func, ...param) {
+  let obj = {};
+  obj.__proto__ = Func.prototype;
+  const result = Func.apply(obj, param);
+  return result instanceof Object ? result : obj;
 }
 
-var bar = new foo(2); // this -> 当前创建的新对象
+function F(name) {
+  this.name = name;
+}
 
-log(bar.a); // bar
+const p = myNew(F, 'shengjingyin'); // F {name: 'shengjingyin'}
 ```
+
+**new 操作执行的四个步骤 、实现 new 的过程**可以参考**new**这篇文章
 
 ### 优先级
 
 new 绑定 > 显示绑定 > 隐式绑定 > 默认绑定
 
-## new 操作执行的四个步骤 、实现 new 的过程
+要判断一个运行中函数的**this 绑定对象**，就需要**找到**这个**函数的直接调用位置**。找到之后依据下面四条规则进行判断 this 的绑定对象 ：
 
-new 相关内容可以参考**new**这篇文章
+- 1、由 new 调用？绑定到新创建的对象。
+- 2、由 call、apply、bind 调用？绑定到指定的对象。
+- 3、由上下文调用？绑定到上下文。
+- 4、默认：严格模式下绑定到 undefined，否则绑定到全局对象上。
 
 ## apply、bind、call 区别
 
