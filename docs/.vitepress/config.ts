@@ -51,7 +51,7 @@ export default {
           ],
         },
         {
-          text: 'vue',
+          text: 'Vue2',
           collapsible: true,
           children: [
             { text: '传参', link: '/front/vue/基础/传参' },
@@ -71,6 +71,7 @@ export default {
                 { text: 'new Vue', link: '/front/vue/源码/1、初始化Vue' },
                 { text: '响应式原理', link: '/front/vue/源码/2、响应式原理' },
                 { text: '异步更新原理', link: '/front/vue/源码/3、异步更新原理' },
+                { text: '编译原理', link: '/front/vue/源码/4、编译原理' },
                 {
                   text: '有哪些是你看了vue才知道的小知识',
                   link: '/front/vue/源码/98、有哪些是你看了vue才知道的小知识',
@@ -93,7 +94,7 @@ export default {
           ],
         },
         {
-          text: 'vue3',
+          text: 'Vue3',
           collapsible: true,
           children: [
             {
