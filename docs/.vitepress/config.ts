@@ -55,8 +55,6 @@ export default {
           collapsible: true,
           children: [
             { text: '传参', link: '/front/vue/基础/传参' },
-            { text: '插槽', link: '/front/vue/基础/插槽' },
-            { text: 'for循环中key的作用', link: '/front/vue/基础/for循环中key的作用' },
             { text: 'hook使用', link: '/front/vue/基础/hook使用' },
             { text: 'watch', link: '/front/vue/基础/watch' },
 
@@ -71,6 +69,8 @@ export default {
                 { text: 'new Vue', link: '/front/vue/源码/1、初始化Vue' },
                 { text: '响应式原理', link: '/front/vue/源码/2、响应式原理' },
                 { text: '异步更新原理', link: '/front/vue/源码/3、异步更新原理' },
+                { text: 'key 原理', link: '/front/vue/源码/5、key原理' },
+                { text: 'v-model 原理', link: '/front/vue/源码/6、v-model原理' },
                 { text: '编译原理', link: '/front/vue/源码/4、编译原理' },
                 {
                   text: '有哪些是你看了vue才知道的小知识',
@@ -80,10 +80,11 @@ export default {
               ],
             },
             {
-              text: '路由',
+              text: 'Vue-Router',
               children: [
                 { text: '入门', link: '/front/vue/路由/入门' },
                 { text: '路由守卫', link: '/front/vue/路由/路由守卫' },
+                { text: '动态路由', link: '/front/vue/路由/动态路由' },
                 { text: 'hash与history区别', link: '/front/vue/路由/hash与history区别' },
               ],
             },
