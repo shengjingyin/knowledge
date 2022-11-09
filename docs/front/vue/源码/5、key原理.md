@@ -1,6 +1,14 @@
 ## 作用
 
+key 是 Vue 识别节点的一个通用机制，**用在 Vue 的虚拟 DOM 算法中，类比新旧 VNodes**。
+
+如果不使用 key，Vue 会使用一种**最大限度减少动态元素**并且尽可能的尝试**复用相同类型元素**的算法。
+
+使用 key 时，它会**基于 key 的变化重新排列元素顺序**，并且会移除 key 不存在的元素。有相同父元素的子元素必须有**独特的 key**。重复的 key 会造成渲染错误。
+
 ## 应用场景
+
+让 vue 能够准确识别渲染元素身份
 
 ## 原理
 
@@ -19,10 +27,10 @@
 
 key 的作用就是判断是否是相似节点，有唯一 key 那么判断相似节点就有唯一性；如果没有 key 那么只能依据 VNode 的特征去判断，有可能不正确，所以会出现未正确渲染的情况
 
-```js
+```js{3}
 function sameVnode(a, b) {
   return (
-    a.key === b.key &&
+    a.key === b.key && // 如果没有key，那么将根据下面的特征进行判断，也就是复用相同类型的元素
     a.asyncFactory === b.asyncFactory &&
     ((a.tag === b.tag &&
       a.isComment === b.isComment &&
@@ -173,36 +181,3 @@ function updateChildren(parentElm, oldCh, newCh, insertedVnodeQueue, removeOnly)
   }
 }
 ```
-
-#### 不使用 key
-
-当 Vue 正在更新使用 `v-for` 渲染的元素列表时，它默认使用“就地更新”的策略。如果数据项的顺序被改变，Vue 将不会移动 DOM 元素来匹配数据项的顺序，而是就地更新每个元素，并且确保它们在每个索引位置正确渲染。这个默认的模式是高效的，但是**只适用于不依赖子组件状态或临时 DOM 状态 (例如：表单输入值) 的列表渲染输出**。
-
-#### 使用 key
-
-为了给 Vue 一个提示，以便它能跟踪每个节点的身份，从而重用和重新排序现有元素，你需要为每项提供一个唯一 `key` attribute：
-
-```vue
-<div v-for="item in items" v-bind:key="item.id">
-  <!-- 内容 -->
-</div>
-```
-
-**建议尽可能在使用 `v-for` 时提供 `key` attribute**，除非遍历输出的 DOM 内容非常简单，或者是刻意依赖默认行为以获取性能上的提升。
-
-因为它是 Vue 识别节点的一个通用机制，`key` 并不仅与 `v-for` 特别关联，`key` 的特殊 attribute 主要用在 Vue 的虚拟 DOM 算法，在新旧 nodes 对比时辨识 VNodes。如果不使用 key，Vue 会使用一种最大限度减少动态元素并且尽可能的尝试就地修改/复用相同类型元素的算法。而使用 key 时，它会基于 key 的变化重新排列元素顺序，并且会移除 key 不存在的元素。有相同父元素的子元素必须有**独特的 key**。重复的 key 会造成渲染错误。
-
-#### 应用场景
-
-- 完整地触发组件的生命周期钩子
-- 触发过渡
-
-例如：
-
-```
-<transition>
-  <span :key="text">{{ text }}</span>
-</transition>
-```
-
-当 `text` 发生改变时，`<span>` 总是会被替换而不是被修改，因此会触发过渡。

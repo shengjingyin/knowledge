@@ -100,7 +100,10 @@ export default {
           children: [
             {
               text: '基础',
-              children: [{ text: '基础', link: '/front/vue3/基础/' }],
+              children: [
+                { text: '基础', link: '/front/vue3/基础/' },
+                { text: 'Vue3与Vue2有什么区别', link: '/front/vue3/基础/Vue3与Vue2有什么区别' },
+              ],
             },
           ],
         },
