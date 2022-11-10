@@ -64,19 +64,23 @@ export default {
             { text: '全局loading', link: '/front/vue/工程解决方案/全局loading' },
             { text: '使用css变量', link: '/front/vue/工程解决方案/使用css变量' },
             {
-              text: '源码',
+              text: '原理',
               children: [
-                { text: 'new Vue', link: '/front/vue/源码/1、初始化Vue' },
-                { text: '响应式原理', link: '/front/vue/源码/2、响应式原理' },
-                { text: '异步更新原理', link: '/front/vue/源码/3、异步更新原理' },
-                { text: 'key 原理', link: '/front/vue/源码/5、key原理' },
-                { text: 'v-model 原理', link: '/front/vue/源码/6、v-model原理' },
-                { text: '编译原理', link: '/front/vue/源码/4、编译原理' },
+                { text: 'new Vue', link: '/front/vue/原理/1、初始化Vue' },
+                { text: '响应式原理', link: '/front/vue/原理/2、响应式原理' },
+                { text: '异步更新原理', link: '/front/vue/原理/3、异步更新原理' },
+                { text: 'key 原理', link: '/front/vue/原理/5、key原理' },
+                { text: 'v-model 原理', link: '/front/vue/原理/6、v-model原理' },
+                { text: '编译原理', link: '/front/vue/原理/4、编译原理' },
+                {
+                  text: 'scoped原理',
+                  link: '/front/vue/原理/7、scoped实现原理和样式穿透方法及原理',
+                },
                 {
                   text: '有哪些是你看了vue才知道的小知识',
-                  link: '/front/vue/源码/98、有哪些是你看了vue才知道的小知识',
+                  link: '/front/vue/原理/98、有哪些是你看了vue才知道的小知识',
                 },
-                { text: 'vue中优秀的语法', link: '/front/vue/源码/99、vue中优秀的语法' },
+                { text: 'vue中优秀的语法', link: '/front/vue/原理/99、vue中优秀的语法' },
               ],
             },
             {
