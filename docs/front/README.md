@@ -40,3 +40,7 @@ module.exports = {
 - 其他的都是**小驼峰**.
 
 ### commit 规范
+
+### BEM 规范
+
+css 命名规范 https://juejin.cn/post/7126505567408881677

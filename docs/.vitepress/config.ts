@@ -94,7 +94,10 @@ export default {
             },
             {
               text: '状态管理',
-              children: [{ text: '入门', link: '/front/vue/状态管理/入门' }],
+              children: [
+                { text: '入门', link: '/front/vue/状态管理/入门' },
+                { text: '能否直接修改state', link: '/front/vue/状态管理/能否直接修改state' },
+              ],
             },
           ],
         },
@@ -167,6 +170,11 @@ export default {
               children: [{ text: 'Babel', link: '/front/webpack/插件/babel/README' }],
             },
           ],
+        },
+        {
+          text: 'vite',
+          collapsible: true,
+          children: [{ text: '入门', link: '/front/vite/README' }],
         },
         { text: 'jquery', collapsible: true, link: '/front/jquery/README' },
         {
@@ -256,6 +264,12 @@ export default {
             },
           ],
         },
+      ],
+      '/network/': [
+        { text: '基础', link: '/network/README' },
+        { text: 'TCP三次连接与四次挥手', link: '/network/TCP三次连接与四次挥手' },
+        { text: 'GET与POST有什么区别', link: '/network/GET与POST有什么区别' },
+        { text: 'CORS', link: '/network/CORS' },
       ],
       '/coding/': [
         {
@@ -459,6 +473,7 @@ export default {
       { text: '组件', link: '/components/' },
       { text: '前端', link: '/front/README' },
       { text: '生态', link: '/ecology/git/基操' },
+      { text: '网络', link: '/network/README' },
       { text: '算法', link: '/coding/数据结构/链表' },
       { text: '后端', link: '/back/README' },
       { text: 'about', link: '/shengjingyin/README' },
