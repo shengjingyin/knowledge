@@ -39,6 +39,7 @@ export default {
             { text: '闭包', link: '/front/js/闭包' },
             { text: '防抖、节流', link: '/front/js/防抖、节流' },
             { text: 'promise', link: '/front/js/promise' },
+            { text: 'class', link: '/front/js/class' },
             { text: '异步解决方案', link: '/front/js/异步解决方案' },
             { text: 'async原理', link: '/front/js/asyncawait原理' },
             { text: 'ES5继承', link: '/front/js/ES5继承' },
